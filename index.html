@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Casa Flavor — Home</title>
+
+  <!-- Tipografía Nunito -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+  <div class="container header-grid">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <img src="IMG/logo.png" alt="Casa Flavor logo">
+    </a>
+
+    <!-- NAV -->
+    <nav class="nav">
+      <a href="shop.html">Shop</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="historia.html">Nuestra historia</a>
+      <a href="carta.html">Carta</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="index.html">Home</a>
+    </nav>
+
+    <!-- SHOP ONLINE -->
+    <div class="cart">
+      <a href="#" class="cart-link">SHOP ONLINE 0</a>
+    </div>
+
+    <!-- BOTÓN MENÚ MOBILE -->
+    <button class="menu-toggle" aria-label="Menú">
+      <span>☰</span>
+    </button>
+    </div>
+    </header>
+
+  <main>
+   <!-- BANNER HOME -->
+<section class="home-hero full-bleed">
+  <div class="hero-img">
+    <img src="IMG/home ppal.jpg" alt="Interior de Casa Flavor">
+  </div>
+
+  <div class="hero-btn">
+    <a href="#" class="btn btn-primary">¡ENCARGÁ TU TORTA ENTERA!</a>
+  </div>
+</section>
+
+   <!-- PRÓXIMOS EVENTOS -->
+<section class="section events-home">
+  <div class="container events-shell">
+    <h2 class="events-title">PRÓXIMOS EVENTOS</h2>
+
+    <button class="events-btn prev" aria-label="Anterior">‹</button>
+
+    <!-- viewport fijo -->
+    <div class="events-viewport" id="eventsViewport">
+      <!-- track que se mueve con transform -->
+      <div class="events-track" id="eventsTrack">
+        <!-- 3 flyers visibles -->
+        <figure class="event-card ratio ratio-1x1">
+          <img src="IMG/evento 1.png" alt="Evento 1">
+        </figure>
+        <figure class="event-card ratio ratio-1x1">
+          <img src="IMG/evento 2.png" alt="Evento 2">
+        </figure>
+        <figure class="event-card ratio ratio-1x1">
+          <img src="IMG/evento 3.png" alt="Evento 3">
+        </figure>
+      </div>
+    </div>
+
+    <button class="events-btn next" aria-label="Siguiente">›</button>
+  </div>
+</section>
+
+
+<!-- MAPA -->
+<section class="section map-home">
+  <div class="container map-grid">
+    <div class="map-copy">
+      <p class="muted">Visita nuestro local</p>
+      <h3 class="map-title">Palermo</h3>
+      <p><strong>Gorriti 3609</strong></p>
+      <p>Martes a Domingos de 9 a 20 hs</p>
+    </div>
+
+    <!-- link mapa -->
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.3433323715867!2d-58.41782582533405!3d-34.59547875706123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccbd5c4504741%3A0x4932b20ca6c80c18!2zQ0FTQSBGTEFWT1Ig4piV4pml77iP!5e0!3m2!1ses!2sar!4v1762870431498!5m2!1ses!2sar"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa Casa Flavor">
+      </iframe>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <footer class="site-footer">
+  <div class="container footer-grid">
+
+    <!-- LOGO -->
+    <a href="index.html" class="footer-logo">
+      <img src="IMG/logo rosa.png" alt="Casa Flavor">
+    </a>
+
+    <!-- CONTACTO -->
+    <div class="footer-contact">
+      <a href="tel:+5491137589162" class="footer-item">
+        <!-- ícono teléfono/whatsapp -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a12.6 12.6 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 10.9 10.9 0 003.4.54 1 1 0 011 1v3.4a1 1 0 01-1 1A17.8 17.8 0 014 6a1 1 0 011-1h3.4a1 1 0 011 1 10.9 10.9 0 00.54 3.4 1 1 0 01-.25 1z"/></svg>
+        <span>+54 9 11 3758 9162</span>
+      </a>
+
+      <a href="https://instagram.com/casaflavor_" target="_blank" rel="noopener" class="footer-item">
+        <!-- ícono instagram -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A4.5 4.5 0 1112 19a4.5 4.5 0 010-9zm0 2a2.5 2.5 0 102.5 2.5A2.5 2.5 0 0012 9.5zm6.25-2.75a.75.75 0 11-.75.75.75.75 0 01.75-.75z"/></svg>
+        <span>@casaflavor_</span>
+      </a>
+
+      <div class="footer-item">
+        <!-- ícono ubicación -->
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 017 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 017-7zm0 9.5A2.5 2.5 0 1012 6a2.5 2.5 0 000 5.5z"/></svg>
+        <span>
+          Gorriti 3609<br>
+          Martes a Domingos de 9 a 20 hs
+        </span>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <nav class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="eventos.html">Eventos</a>
+      <a href="carta.html">Carta</a>
+      <a href="historia.html">Nuestra historia</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

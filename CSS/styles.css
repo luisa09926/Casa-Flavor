@@ -1,0 +1,507 @@
+/* =========================================================
+   0) VARIABLES & BASE
+   ========================================================= */
+:root{
+  /* Colores base */
+  --bg: #faf9f7;
+  --paper: #ffffff;
+  --ink: #7D5341;
+  --muted: #9E8C84;
+  --line: #e8e6e3;
+
+  /* Marca y acentos (ajustarlos si quiero unificar) */
+  --brand: #5D0121;
+  --accent: #A14B91;
+
+  /* Colores de layout */
+  --header-bg: #F9F3DF;
+  --footer-bg: #7D5341;
+
+  /* Layout & tokens */
+  --radius: 16px;
+  --space: clamp(12px, 2vw, 24px);
+  --w-container: 1100px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body{
+  font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   1) HELPERS / UTILIDADES
+   ========================================================= */
+.container{
+  width: min(100%, var(--w-container));
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+.section{ padding: clamp(40px, 8vw, 80px) 0; }
+.section-head h2{ font-size: clamp(28px, 5vw, 40px); margin: 0 0 8px; }
+.section-head.center{ text-align: center; }
+.muted{ color: var(--muted); }
+.hidden{ display: none; }
+
+/* Aspect Ratios genéricos */
+.ratio{ position: relative; width: 100%; overflow: hidden; background: #ddd; border-radius: var(--radius); }
+.ratio > img{
+  position: absolute;
+  top: 50%; left: 50%;
+  width: auto; height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+.ratio-16x9{ aspect-ratio: 16/9; }
+.ratio-21x9{ aspect-ratio: 21/9; }
+.ratio-4x3 { aspect-ratio: 4/3; }
+.ratio-3x4 { aspect-ratio: 3/4; }
+.ratio-1x1 { aspect-ratio: 1/1; }
+
+/* Botones genéricos (despues hay variantes por sección) */
+.btn{
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #fff;
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+.btn:hover{ opacity: .9; }
+.btn-outline{
+  background: transparent;
+  color: var(--brand);
+  border: 1.5px solid var(--brand);
+}
+
+/* =========================================================
+   2) HEADER (global para todas las páginas)
+   ========================================================= */
+.site-header{
+  background: var(--header-bg);
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in oklab, #000, #fff 90%);
+  position: sticky; top: 0; z-index: 50;
+}
+.header-grid{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+.logo{ display: flex; align-items: center; text-decoration: none; }
+.logo img{ height: 48px; width: auto; display: block; }
+
+/* Nav */
+.nav{ display: flex; align-items: center; gap: 24px; }
+.nav a{
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 15px;
+  transition: color .2s ease;
+}
+.nav a:hover{ color: var(--brand); }
+
+/* Shopping link */
+.cart a{
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Menú mobile */
+.menu-toggle{
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--ink);
+}
+@media (max-width: 850px){
+  .nav{ display: none; }
+  .nav.open{
+    display: flex;
+    flex-direction: column;
+    background: var(--header-bg);
+    position: absolute; top: 100%; left: 0; width: 100%;
+    padding: 20px 0;
+  }
+  .menu-toggle{ display: block; }
+}
+
+/* =========================================================
+   3) HOME — HERO (banner con botón)
+   ========================================================= */
+.home-hero{
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+}
+.home-hero .hero-img{
+  position: relative;
+  width: 100%;
+  height: 70vh;                  /* altura visible del banner */
+  min-height: 420px;
+}
+.home-hero .hero-img img{
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.home-hero .hero-btn{
+  position: absolute; z-index: 2;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Botón del hero */
+.home-hero .btn{
+  background: var(--footer-bg);  /* #7D5341 */
+  color: #fff; text-transform: uppercase;
+  font-weight: 700; letter-spacing: .5px;
+  padding: 12px 28px; border-radius: 6px;
+  border: none; font-size: 14px;
+  transition: background .25s ease, opacity .25s ease;
+}
+.home-hero .btn:hover{
+  background: color-mix(in oklab, var(--footer-bg), #000 15%);
+  opacity: .95;
+}
+
+/* =========================================================
+   4) HOME — Flyers (carrusel reutilizable en Eventos)
+   ========================================================= */
+.events-title{
+  font-size: clamp(22px, 4vw, 38px);
+  margin: 0 0 24px;
+  letter-spacing: .5px;
+}
+.events-shell{ position: relative; }
+.events-viewport{ overflow: hidden; width: 100%; }
+.events-track{
+  display: flex; gap: 20px;
+  will-change: transform;
+  transform: translateX(0);
+  transition: transform .35s ease;
+  padding-inline: 4px;
+}
+.event-card{
+  flex: 0 0 clamp(160px, 22vw, 240px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+.event-card img{ width: 100%; height: 100%; object-fit: cover; }
+/* Flechas */
+.events-btn{
+  position: absolute; top: calc(50% + 8px); transform: translateY(-50%);
+  width: 40px; height: 40px; display: grid; place-items: center;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in oklab, var(--brand), #000 20%);
+  background: #fff; color: var(--brand); cursor: pointer;
+}
+.events-btn:hover{ background: color-mix(in oklab, #fff, var(--brand) 7%); }
+.events-btn.prev{ left: -6px; }
+.events-btn.next{ right: -6px; }
+@media (max-width: 900px){
+  .event-card{ flex-basis: clamp(160px, 42vw, 220px); }
+}
+
+/* =========================================================
+   5) HOME / CONTACTO — Mapa embebido
+   ========================================================= */
+.map-grid{
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 36px; align-items: center;
+}
+.map-title{
+  font-size: clamp(26px, 3.6vw, 40px);
+  margin: 6px 0 10px;
+}
+.map-wrap{
+  position: relative; width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #f1f1f1;
+}
+.map-wrap iframe{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; border: 0;
+}
+@media (max-width: 900px){
+  .map-grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   6) EVENTOS — Banner hero + tira de flyers
+   ========================================================= */
+.full-bleed{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.eventos-hero{
+  position: relative;
+  aspect-ratio: 21/9;
+  overflow: hidden;
+}
+.eventos-hero .hero-img img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+/* Gradiente de lectura */
+.eventos-hero::after{
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.15) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+/* Texto sobre imagen */
+.eventos-hero .hero-copy{
+  position: absolute; z-index: 5; color: #fff;
+  top: 50%; left: clamp(16px, 6vw, 120px);
+  transform: translateY(-50%);
+}
+.eventos-hero .hero-copy h1{
+  font-weight: 900;
+  font-size: clamp(32px, 6vw, 80px);
+  line-height: 1.05;
+  margin: 0;
+  text-shadow: 0 3px 10px rgba(0,0,0,.45);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+@media (max-width: 768px){
+  .eventos-hero{ aspect-ratio: 16/9; }
+  .eventos-hero .hero-copy h1{ font-size: clamp(30px, 8vw, 60px); }
+}
+
+/* Lista simple (si la uso) */
+.event-list{ display: grid; gap: 12px; padding: 0; list-style: none; }
+.event-list li{
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px;
+}
+
+/* =========================================================
+   7) SHOP — Cards de productos
+   ========================================================= */
+.shop .product-grid{
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 60px;
+  align-items: start;
+  justify-items: center; /* centra cada card si es más angosta */
+}
+@media (max-width: 900px){
+  .shop .product-grid{ grid-template-columns: 1fr; gap: 28px; }
+}
+.card{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  width: 100%; max-width: 560px;
+}
+.card-body{ padding: 16px; display: grid; gap: 8px; }
+.product-title{ margin: 0; }
+.price{ margin: 0; font-weight: 700; }
+/* Paginación opcional */
+.pagination{ display: flex; gap: 8px; justify-content: center; margin-top: 24px; }
+.page{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid var(--line); color: var(--ink); text-decoration: none;
+}
+.page.active, .page:hover{ background: var(--ink); color: #fff; border-color: var(--ink); }
+/* Imágenes de producto dentro de “ratio” */
+.shop .ratio.card-media{ border-radius: 18px; overflow: hidden; }
+.shop .ratio.card-media > img{
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+
+/* =========================================================
+   8) HISTORIA — Texto + imagen vertical
+   ========================================================= */
+.history-hero .history-kicker{
+  font-size: clamp(18px, 2.2vw, 22px);
+  letter-spacing: .18em; font-weight: 800;
+  color: var(--ink); margin: 0 0 8px;
+  text-transform: uppercase;
+}
+.history-grid{
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;  /* texto / imagen */
+  gap: 48px; align-items: center;
+}
+.history-title{
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15; margin: 0 0 14px; color: var(--ink);
+}
+.history-subtitle{
+  font-size: clamp(22px, 2.6vw, 28px);
+  margin: 0 0 12px; color: var(--ink);
+}
+.history-copy p{ margin: 0; color: var(--ink-2, #5a5a5a); }
+
+/* Imagen vertical */
+.history-photo{
+  aspect-ratio: 3/4;
+  max-width: 300px;
+  justify-self: center;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #eaeaea;
+  position: relative;
+}
+.history-photo img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+/* Bloque invertido */
+.history-block.alt .history-grid{
+  grid-template-columns: .9fr 1.1fr; /* imagen / texto */
+  gap: 64px;
+}
+.history-block.alt .history-grid > .history-photo{ order: 1; }
+.history-block.alt .history-grid > .history-copy { order: 2; }
+
+/* Responsive Historia */
+@media (max-width: 980px){
+  .history-grid{ grid-template-columns: 1fr; gap: 28px; }
+  .history-photo{ max-width: 100%; }
+}
+
+/* Fix específico para conflicto con .ratio > img en Historia */
+.history-photo.ratio{
+  position: relative; aspect-ratio: 3/4; max-width: 300px;
+  justify-self: center; border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--line); background: #eaeaea;
+}
+.history-photo.ratio > img{
+  position: absolute !important; inset: 0 !important;
+  width: 100% !important; height: 100% !important;
+  object-fit: cover !important; object-position: center !important;
+  transform: none !important; top: auto !important; left: auto !important;
+}
+
+/* =========================================================
+   9) CARTA — 2x2 con líneas centrales
+   ========================================================= */
+.menu{ background: #f6efdf; }
+.menu-kicker{
+  letter-spacing: .18em; text-transform: uppercase; font-weight: 800;
+  color: var(--ink); margin: 0 0 12px;
+}
+.menu-grid{
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 36px 48px;
+  padding: 12px 8px;
+}
+/* Líneas divisorias cruz */
+.menu-grid::before, .menu-grid::after{
+  content: ""; position: absolute; inset: auto;
+  background: color-mix(in oklab, var(--ink), #fff 80%);
+}
+.menu-grid::before{ width: 1px; top: 0; bottom: 0; left: 50%; transform: translateX(-.5px); }
+.menu-grid::after { height: 1px; left: 0; right: 0; top: 50%; transform: translateY(-.5px); }
+
+.menu-card{ padding: 6px 6px 0; }
+.menu-title{
+  font-size: clamp(22px, 3vw, 34px);
+  margin: 0 0 10px; color: var(--brand); font-weight: 800;
+}
+.menu-list{ margin: 0; }
+.menu-list .row{
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 6px 0; border-bottom: 1px dashed #e0d8c7;
+}
+.menu-list .row:last-child{ border-bottom: none; }
+.menu-list dt, .menu-list dd{ margin: 0; }
+.menu-list dt{ color: var(--ink); }
+.menu-list dd{
+  color: var(--ink);
+  min-width: 84px; text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 900px){
+  .menu-grid{ grid-template-columns: 1fr; }
+  .menu-grid::before, .menu-grid::after{ display: none; }
+}
+
+/* =========================================================
+   10) FORMULARIOS (Contacto)
+   ========================================================= */
+.contact-form{ display: grid; gap: 16px; max-width: 700px; }
+.field{ display: grid; gap: 6px; }
+input, textarea{
+  width: 100%; padding: 12px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+}
+input:focus, textarea:focus{
+  outline: 2px solid color-mix(in oklab, var(--brand), #fff 70%);
+}
+
+/* =========================================================
+   11) FOOTER (global)
+   ========================================================= */
+.site-footer{
+  background: var(--footer-bg);
+  color: #F5F6F0;
+  padding: 28px 0;
+  border-top: 1px solid rgba(0,0,0,.15);
+}
+.footer-grid{
+  display: grid;
+  grid-template-columns: auto 1fr auto;  /* logo | contacto | links */
+  align-items: start;
+  gap: 28px 40px;
+}
+.footer-logo img{
+  width: 72px; height: 72px; object-fit: contain; display: block;
+  border-radius: 999px; /* logo es circular */
+}
+/* Contacto */
+.footer-contact{ display: grid; gap: 10px; }
+.footer-item{
+  display: grid; grid-template-columns: 22px 1fr;
+  align-items: start; gap: 10px;
+  color: #F5F6F0; text-decoration: none;
+}
+.footer-item svg{ width: 22px; height: 22px; fill: #F5F6F0; opacity: .9; margin-top: 2px; }
+.footer-item span{ font-size: 14px; line-height: 1.35; }
+/* Links */
+.footer-links{ display: grid; justify-items: end; gap: 6px; }
+.footer-links a{
+  color: #F5F6F0; text-decoration: none; font-size: 14px;
+  opacity: .95; transition: opacity .15s ease;
+}
+.footer-links a:hover{ opacity: 1; }
+@media (max-width: 800px){
+  .footer-grid{ grid-template-columns: 1fr; justify-items: start; }
+  .footer-links{ justify-items: start; grid-auto-flow: row; grid-template-columns: 1fr; }
+}
